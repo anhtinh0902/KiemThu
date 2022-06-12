@@ -1,0 +1,75 @@
+<div class="container mt-3">
+  <button *ngIf="!showModal" type="button" class="btn btn-danger m-3" (click)="openModal()">
+    Thêm mới
+  </button>
+  <button *ngIf="showModal" type="button" class="btn btn-warning" (click)="colseModal()">
+    Xóa Hết
+  </button>
+</div>
+<div class="container">
+<form #formUser="ngForm" *ngIf="showModal" (submit)="onSubmit(formUser)">
+  <div class="form-group">
+    <label for="">Họ Tên</label>
+    <br>
+    <input #name="ngModel" required minlength="4"  [(ngModel)]="user.name" name="name" type="text" class="form-control">
+        <div *ngIf="name.invalid && name.dirty" class="alert alert-danger" role="alert">
+            <strong *ngIf="name.errors?.['required']">Bắt buộc phải nhập</strong>
+            <strong *ngIf="name.errors?.['minlength']">Tối thiểu 4 ký tự</strong>
+        </div>
+  </div>
+  <div class="form-group">
+    <label for="">Giới tính</label>
+    <br>
+    <input type="text"  name="gender" id=""  required #gender="ngModel" [(ngModel)]="user.gender" class="form-control">
+      <div *ngIf="gender.invalid && gender.dirty"  class="alert alert-danger" role="alert">
+        <strong *ngIf="gender.errors?.['required']">Bat buoc nhap</strong>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="">Email</label>
+    <br>
+    <!-- <app-provide [(ngModel)]="user.address" name="address" class="form-control"></app-provide> -->
+    <input #email="ngModel" required   [(ngModel)]="user.email" name="email" type="text" class="form-control">
+        <div *ngIf="email.invalid && email.dirty" class="alert alert-danger" role="alert">
+            <strong *ngIf="email.errors?.['required']">Bắt buộc phải nhập</strong>
+
+        </div>
+  </div>
+  <div class="form-group">
+    <label for="">Trạng thái</label>
+    <br>
+    <input type="text" name="status" required #status="ngModel" [(ngModel)]="user.status"  class="form-control">
+    <div class="form-control" *ngIf="status.invalid && status.dirty"  class="alert alert-danger">
+      <strong *ngIf="status.errors?.['required']">Bat buoc nhap</strong>
+    </div>
+    <br>
+  </div>
+  <button type="submit" class="btn btn-success">Them moi</button>
+</form>
+<br>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Họ tên</th>
+        <th>Giới tính</th>
+        <th>Email</th>
+        <th>Trạng thái</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of list_user,let i=index">
+        <td>{{i+1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.gender}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.status}}</td>
+        <td class="text-center">
+           <button class="btn btn-danger " (click)="delete(i)" >Xóa</button>
+           <button class="btn btn-info" >Sửa</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+

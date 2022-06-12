@@ -1,0 +1,33 @@
+<form #formNote="ngForm" (submit)="onSubmitNote(formNote)">
+  <div class="form-group">
+    <label for="">Ten</label>
+    <br>
+    <input type="text" required minlength="4" #name="ngModel" [(ngModel)]="note.name"  class="form-control">
+    <div class="form-control" *ngIf="name.invalid && name.dirty"  class="alert alert-danger">
+      <strong *ngIf="name?.errors?.['required']">Bat buoc nhap</strong>
+      <strong *ngIf="name?.errors?.['minlength']">Nhap it nhat 4 ky tu</strong>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="">Noi dung</label>
+    <br>
+    <textarea name="" id=""  required minlength="4" #content="ngModel" [(ngModel)]="note.content"
+      class="form-content" class="form-control"></textarea>
+      <div class="form-control" *ngIf="content.invalid && content.dirty"  class="alert alert-danger">
+        <strong *ngIf="content?.errors?.['required']">Bat buoc nhap</strong>
+        <strong *ngIf="content?.errors?.['minlength']">Nhap it nhat 4 ky tu</strong>
+      </div>
+  </div>
+  <br>
+  <div class="form-group">
+  <label for="">Trang thai</label>
+  <select name="status" id="" [(ngModel)]="note.status" class="form-control">
+    <option value="0">Moi</option>
+    <option value="1">Dang thuc hien</option>
+    <option value="2">Hoan thanh</option>
+  </select>
+</div>
+  <button type="submit" class="btn btn-primary">Them ghi chu</button>
+</form>
+

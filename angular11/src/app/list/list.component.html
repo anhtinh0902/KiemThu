@@ -1,0 +1,28 @@
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>STT</th>
+        <th>Ten</th>
+        <th>Noidung</th>
+        <th>Trang thai</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of listNote,let i=index">
+        <td>{{i+1}}</td>
+        <td>{{item.name}}</td>
+        <td>{{item.content}}</td>
+        <td>
+          <span *ngIf="item.status == 0" class="badge bg-primary">Moi</span>
+          <span *ngIf="item.status == 1" class="badge bg-warning">Dang thuc hien</span>
+          <span *ngIf="item.status == 2" class="badge bg-success">Hoan thanh</span>
+        </td>
+        <td class="text-center">
+           <button class="btn btn-danger " (click)="delete(i)">Xoa</button>
+           <button class="btn btn-info" (click)="openEdit(item)">Sua</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+

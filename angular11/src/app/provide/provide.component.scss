@@ -1,0 +1,31 @@
+.select-control {
+  position: relative;
+  .result {
+    position: absolute;
+    left: 0;
+    top: 38px;
+    background: #fff;
+    box-shadow: 1px 1px 13px 1px rgb(0 0 0 / 16%);
+    display: none;
+    width: 100%;
+    &.show {
+      display: block;
+    }
+    ul {
+      list-style: none;
+      padding-left: 0;
+      padding: 10px;
+      li {
+        a {
+          padding: 8px 15px;
+          border-bottom: 1px solid;
+          display: block;
+          &:hover {
+            background: rgba(0, 255, 255, 0.195);
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
